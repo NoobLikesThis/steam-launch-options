@@ -1,0 +1,148 @@
+General Steam Launch Options:
+1. -novid
+Skips the intro video of a game for faster loading.
+2. -high
+Forces the game to run in high-priority mode, giving it more CPU resources.
+3. -fullscreen
+Forces the game to launch in full-screen mode.
+4. -windowed or -sw
+Forces the game to launch in windowed mode.
+5. -noborder
+Launches the game in windowed mode without borders (borderless windowed mode).
+6. -w [width] -h [height]
+Forces the game to run at a specific resolution. Example: -w 1920 -h 1080 for 1080p.
+7. -dx11 / -dx12
+Forces the game to use DirectX 11 or DirectX 12 (if supported by the game).
+8. -gl
+Forces the game to use OpenGL rendering instead of DirectX.
+9. -refresh [rate]
+Forces the game to use a specific refresh rate. Example: -refresh 60 for 60Hz.
+10. +fps_max [fps]
+Sets a maximum frame rate for the game. Example: +fps_max 60 to limit the game to 60 FPS.
+11. -nojoy
+Disables joystick and gamepad input, which may improve performance if you’re not using these devices.
+12. -threads [number]
+Forces the game to use a specific number of CPU threads. Example: -threads 4 for a quad-core CPU.
+13. -heapsize [size]
+Adjusts the amount of memory (RAM) allocated to the game. Recommended to set this to half your system’s RAM. Example: -heapsize 2097152 for 4 GB of RAM.
+14. -nod3d9ex
+Disables Direct3D 9Ex (D3D9Ex), which can help if you're experiencing performance issues related to graphics.
+15. -nohltv
+Disables the Half-Life TV (HLTV) broadcast system, often used in Source engine games, to improve performance.
+16: -vulkan
+17: -tickrate
+This determines sets the game tick interval essentially determining the frequency the game processes information, higher the better. This affects your experience when playing against bots or other local listen server modes. (Default: 64)
+
+ALL RENDERING OPTIONS:
+DIRECTX OPTIONS:
+directx 10: -dx10
+directx 11: -dx11
+directx 12: -dx12
+THESE MIGHT NOT BE ABLE TO WORK IN CERTAIN GAMES
+below:
+-nod3d9ex
+Disables Direct3D 9Ex (D3D9Ex), which can help if you're experiencing performance issues related to graphics.
+-dxlevel [level]
+Forces a specific DirectX version when launching the game. This is useful if your graphics hardware is older, and gets significantly better performance in an earlier version of DirectX. Below are the most common modes used:
+-dxlevel 80
+-dxlevel 81
+-dxlevel 90
+-dxlevel 95
+-dxlevel 98 
+OPENGL:
+-gl
+Forces the game to use OpenGL rendering instead of DirectX.
+VULKAN:
+-vulkan
+Forces the game to use vulkan rendering instead of DirectX.
+
+Advanced/Specific Steam Launch Options:
+1. -autoconfig
+Resets video and performance settings to default for the game.
+2. -safe
+Launches the game in safe mode, with minimal settings, useful for troubleshooting crashes.
+3. -console
+Enables the in-game developer console (if available in the game).
+4. -useforcedmparms -noforcemaccel -noforcemspd
+Disables mouse acceleration and forces default mouse settings in Source engine games like CS
+5. +cl_forcepreload 1
+Forces the game to preload all textures and models before entering the game. This can reduce in-game stuttering but may increase loading times.
+6. -lv
+Enables low violence mode in games that support it (e.g., Counter-Strike series).
+7. -dxlevel [version]
+Forces a specific DirectX version. Example: -dxlevel 90 for DirectX 9. Some older games can run better on lower versions of DirectX.
+8. +mat_antialias 0 and +mat_forceaniso 1
+Disables anti-aliasing and forces anisotropic filtering, useful for improving performance in Source engine games.
+9. +cl_showfps 1
+Displays an FPS counter in-game for Source engine games.
+10. -nocrashdialog
+Disables crash reporting dialogue boxes, allowing quicker restarts if a crash occurs.
+
+VR-Specific Steam Launch Options:
+1. -vr
+Forces the game to launch in VR mode.
+2. -noipd
+Disables inter-pupillary distance adjustments for VR games.
+3. -openvr
+Forces the game to use the OpenVR platform instead of other VR APIs.
+
+another one: https://help.steampowered.com/en/faqs/view/7D01-D2DD-D75E-2955
+-heapsize (RAM x 524228)
+Adjust RAM minimum allocation
+Check RAM memory to : Task Manager - Performance tab - Memory section
+Example : 4GB -heapsize 2096912 / 8GB -heapsize 4194304 / 16GB -heapsize 8388608
+
+-maxMem=(RAM x 1024)
+Adjust RAM maximum allocation
+Check RAM memory to : Task Manager - Performance tab - Memory section
+Example : 4GB -maxMem=4096 / 8GB -maxMem=8192 / 16GB -maxMem=16384
+
+-maxVram=(VRAM x 1024 - 512)
+Ajdust GPU's RAM(VRAM) maximum allocation
+Check GPU's RAM(VRAM) memory to : Task Manager - Performance tab - GPU section - Dedicated GPU memory
+Example : 3GB -maxVram=2560 / 4GB -maxVram=3584 / 6GB -maxVram=5632 / 8GB -maxVram=7168
+
+-cpuCount=(number)
+Set CPU Cores allocation
+Check CPU threads to : Task Manager - Performance tab - CPU section - Cores
+
+-threads (number)
+Set CPU threads allocation
+Check CPU threads to : Task Manager - Performance tab - CPU section - Logical processors
+
+
+    -noforcemparms
+        Uses the mouse configuration settings defined in Windows Control Panel Mouse settings, use all windows mouse settings/thresholds. This should technically be the same as when all three are combined (-noforcemparms -noforcemspd -noforcemaccel), see github code reference below
+    -noforcemspd
+        Uses windows defined mouse Enhanced Pointer Precision settings, if disabled in windows will be disabled in-game with this option
+    -noforcemaccel
+        Uses windows mouse threshold settings for acceleration, determines how acceleration is multiplied
+    -nomsaa
+        Disables in-game post processing anti-aliasing, this is automatically implied when -nofbo is used.
+    -stretchaspect
+        The game by default adds black bars based on your game screen resolution. Use -stretchaspect on your command line if you want the old behavior back (just always fill the screen). Setting "-nofbo" also implies "-stretchaspect".
+    -freq <monitor refresh rate>
+        e.g. -freq 144
+        This sets the monitors refresh rate when the game is launched, set this to a higher value if your monitor supports it (100hz, 120hz, 144hz)
+        This setting works with the new rendering mode (when you do not have -nofbo specified)
+        In order to get the proper monitor refresh rate with -nofbo enabled you must set your desktop refreshrate to the desired refreshrate first, assuming the in-game resolution supports the refresh rate.
+    -nofbo
+        Uses the rendering method similar to the one before the 2013 updates, this may improve performance on some PCs. See note above regarding nofbo and in-game monitor refresh rate. This also implies the use of -nomsaa
+
+Common Launch Option Settings:
+
+With Old Rendering Method (nofbo)
+
+    -noforcemparms -noforcemspd -noforcemaccel -nofbo -freq <refreshrate>
+    -noforcemparms -noforcemaccel -nofbo -freq <refreshrate>
+    -noforcemparms -nofbo -freq <refreshrate>
+
+With New Rendering Method
+
+    -noforcemparms -noforcemspd -noforcemaccel -nomsaa -stretchaspect -freq <refreshrate>
+    -noforcemparms -noforcemspd -noforcemaccel -nomsaa -freq <refreshrate>
+    -noforcemparms -noforcemaccel -nomsaa -stretchaspect -freq <refreshrate>
+    -noforcemparms -noforcemaccel -nomsaa -freq <refreshrate>
+    -noforcemparms -nomsaa -strectchaspect -freq <refreshrate>
+    -noforcemparms -nomsaa -freq <refreshrate>
+https://dota2.fandom.com/wiki/Launch_Options
